@@ -1,0 +1,8 @@
+1. Enterprise
+2. Boilerplate is a chunk of code that is available on startup and is used over and over again in the application.
+3. Spring Framework
+4. Pivotal Software
+5. start.spring.io
+6. doesn't need web servers 
+7-9. Dependency injection is a programming technique where you don't have to initialize a class. This can be done by putting the object in the constructor. 
+10. mvn spring-boot:run
