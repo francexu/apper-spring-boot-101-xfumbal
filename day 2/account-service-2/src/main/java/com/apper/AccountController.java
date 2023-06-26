@@ -20,7 +20,7 @@ public class AccountController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateAccountResponse createAccount(@RequestBody CreateAccountRequest request) {
-        Account account= accountService.create(request.getFirstName(), request.getLastname(), request.getEmail(), request.getPassword());
+        Account account = accountService.create(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword());
 
         CreateAccountResponse response = new CreateAccountResponse();
         response.setVerificationCode(account.getVerificationCode());
@@ -53,7 +53,7 @@ public class AccountController {
     @PutMapping("{accountId}")
     @ResponseStatus(HttpStatus.OK)
     public UpdateAccountResponse updateAccount(@PathVariable String accountId, @RequestBody CreateAccountRequest request) {
-        accountService.update(accountId, request.getFirstName(), request.getLastname(), request.getEmail(), request.getPassword());
+        accountService.update(accountId, request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword());
 
         UpdateAccountResponse response = new UpdateAccountResponse();
         response.setLastUpdated(LocalDateTime.now());
@@ -75,6 +75,7 @@ public class AccountController {
         response.setLastName(account.getLastName());
         response.setUsername(account.getUsername());
         response.setRegistrationDate(account.getCreationDate());
+        response.setAccountId(account.getId());
 
         return response;
     }
