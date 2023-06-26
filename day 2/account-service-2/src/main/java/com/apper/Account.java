@@ -1,4 +1,4 @@
-package main.java.com.apper;
+package com.apper;
 
 import lombok.Data;
 

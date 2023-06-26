@@ -1,13 +1,11 @@
 package com.apper;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("account")
@@ -34,6 +32,43 @@ public class AccountController {
     public GetAccountResponse getAccount(@PathVariable String accountId) {
         Account account = accountService.get(accountId);
 
+        return createGetAccountResponse(account);
+    }
+
+    @GetMapping
+    public List<GetAccountResponse> getAllAccounts() {
+        List<GetAccountResponse> responseList =
+                new ArrayList<>();
+
+        for (Account account : accountService.getAll()) {
+            GetAccountResponse response = createGetAccountResponse(account);
+            responseList.add(response);
+        }
+
+        return responseList;
+    }
+
+    // Laboratory exercises
+
+    @PutMapping("{accountId}")
+    @ResponseStatus(HttpStatus.OK)
+    public UpdateAccountResponse updateAccount(@PathVariable String accountId, @RequestBody CreateAccountRequest request) {
+        accountService.update(accountId, request.getFirstName(), request.getLastname(), request.getEmail(), request.getPassword());
+
+        UpdateAccountResponse response = new UpdateAccountResponse();
+        response.setLastUpdated(LocalDateTime.now());
+
+        return response;
+    }
+
+
+    @DeleteMapping("{accoundId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAccount(@PathVariable String accountId) {
+        accountService.delete(accountId);
+    }
+
+    private GetAccountResponse createGetAccountResponse(Account account) {
         GetAccountResponse response = new GetAccountResponse();
         response.setBalance(account.getBalance());
         response.setFirstName(account.getFirstName());
@@ -43,5 +78,4 @@ public class AccountController {
 
         return response;
     }
-
 }
