@@ -20,9 +20,9 @@ public class AccountService {
     public Account create(String firstName, String lastName, String username, String clearPassword) {
         Account account = new Account();
 
-        String id = UUID.randomUUID().toString();
-        System.out.println("Generated id: " + id);
-//        String id = idGeneratorService.getNextId();
+//        String id = UUID.randomUUID().toString();
+//        System.out.println("Generated id: " + id);
+        String id = idGeneratorService.getNextId();
 
         account.setId(id);
         account.setBalance(1_000.0);
