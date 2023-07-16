@@ -1,0 +1,8 @@
+Key Takeaways:
+1. Springboot is used in creating REST API and micro services.
+2. In a REST API, it is important to have the entities, payload, repository, service, and controller.
+3. The entities in Springboot are like the mapped table in the database.
+4. The payload is the data being transferred in the API
+5. It is important to have a repository class so there will be no direct access to the database.
+6. The service and controller contains the logic of the whole API. 
+7. There are different HTTP headers like Post (for creating), Get (for obtaining), Put (for updating), Delete (for deleting), and etc.
